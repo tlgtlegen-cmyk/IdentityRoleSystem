@@ -1,0 +1,57 @@
+﻿@using IdentityRoleSystem.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "Басты бет";
+    var currentUser = User.Identity?.IsAuthenticated == true ? await UserManager.GetUserAsync(User) : null;
+    var roles = currentUser is null ? new List<string>() : (await UserManager.GetRolesAsync(currentUser)).ToList();
+    var role = roles.FirstOrDefault();
+}
+
+@if (currentUser is null)
+{
+    <section class="hero-card">
+        <div class="hero-copy">
+            <span class="eyebrow">ҚОЛДАНУШЫЛАРДЫ БАСҚАРУ ЖҮЙЕСІ</span>
+            <h1>Пайдаланушылар мен рөлдерге арналған қауіпсіз панель</h1>
+            <p>ASP.NET Core Identity көмегімен тіркелу, кіру және рөлдік қолжетімділікті басқару.</p>
+            <div class="d-flex gap-3 mt-4">
+                <a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Register">Тіркелу</a>
+                <a class="btn btn-outline-light btn-lg" asp-controller="Account" asp-action="Login">Кіру</a>
+            </div>
+        </div>
+        <div class="hero-stat">
+            <strong>2</strong>
+            <span>рөл: Admin және Student</span>
+        </div>
+    </section>
+}
+else
+{
+    <section class="dashboard-head">
+        <div>
+            <span class="eyebrow">DASHBOARD</span>
+            <h1>Қош келдіңіз, @currentUser.FullName!</h1>
+            <p>Сіз <strong>@(role == "Admin" ? "Әкімші" : "Студент")</strong> рөлімен кіргенсіз.</p>
+        </div>
+        <span class="role-badge">@(role == "Admin" ? "Admin" : "Student")</span>
+    </section>
+
+    <div class="row g-4 mt-2">
+        <div class="col-md-6">
+            <article class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h2>Студенттер тізімі</h2>
+                <p>Тіркелген Student рөліндегі пайдаланушыларды қарау.</p>
+                <a class="btn btn-primary" asp-controller="Students" asp-action="Index">Тізімді ашу</a>
+            </article>
+        </div>
+        <div class="col-md-6">
+            <article class="feature-card">
+                <div class="feature-icon">@(role == "Admin" ? "⚙" : "🔒")</div>
+                <h2>@(role == "Admin" ? "Әкімші мүмкіндігі" : "Студент шектеуі")</h2>
+                <p>@(role == "Admin" ? "Студенттерді қорғауға және жоюға құқық бар." : "Студент тізімді көре алады, бірақ жою операциясына рұқсаты жоқ.")</p>
+            </article>
+        </div>
+    </div>
+}

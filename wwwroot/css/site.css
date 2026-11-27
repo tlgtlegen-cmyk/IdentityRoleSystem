@@ -1,0 +1,94 @@
+:root {
+  --navy: #102a43;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --ink: #1e293b;
+  --muted: #64748b;
+  --surface: #ffffff;
+  --canvas: #f4f7fb;
+}
+
+html { min-height: 100%; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
+  display: flex;
+  flex-direction: column;
+}
+.topbar {
+  background: var(--navy);
+  min-height: 72px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, .12);
+}
+.topbar .nav-link, .topbar .navbar-brand { color: #fff !important; }
+.topbar .nav-link { opacity: .86; padding-left: 1rem !important; padding-right: 1rem !important; }
+.topbar .nav-link:hover { opacity: 1; }
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-right: 8px;
+  border-radius: 10px;
+  background: var(--blue);
+  font-size: 13px;
+  letter-spacing: .5px;
+}
+.page-container { flex: 1; padding-top: 42px; padding-bottom: 60px; }
+.footer { padding: 20px 0; border-top: 1px solid #dde5ef; color: var(--muted); background: #fff; }
+.hero-card {
+  min-height: 430px;
+  border-radius: 24px;
+  padding: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background: linear-gradient(135deg, #143b66 0%, #102a43 65%, #1d4ed8 100%);
+  box-shadow: 0 24px 50px rgba(15, 42, 67, .18);
+}
+.hero-copy { max-width: 670px; }
+.hero-copy h1 { max-width: 620px; font-size: clamp(2.2rem, 5vw, 4.2rem); line-height: 1.08; margin: 14px 0 20px; font-weight: 700; }
+.hero-copy p { max-width: 570px; color: #dbeafe; font-size: 1.08rem; }
+.eyebrow { display: block; color: var(--blue); font-size: .75rem; font-weight: 700; letter-spacing: 1.8px; }
+.hero-card .eyebrow { color: #93c5fd; }
+.hero-stat { width: 190px; height: 190px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; display: grid; place-content: center; text-align: center; background: rgba(255,255,255,.07); }
+.hero-stat strong { display: block; font-size: 4.5rem; line-height: 1; }
+.hero-stat span { max-width: 150px; color: #dbeafe; font-size: .85rem; }
+.btn-primary { border-color: var(--blue); background: var(--blue); font-weight: 600; }
+.btn-primary:hover { border-color: var(--blue-dark); background: var(--blue-dark); }
+.dashboard-head, .list-head { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px rgba(15,23,42,.07); }
+.dashboard-head h1, .list-head h1 { font-size: 2rem; margin: 8px 0 6px; }
+.dashboard-head p { color: var(--muted); margin: 0; }
+.role-badge, .count-badge { padding: 10px 16px; border-radius: 999px; color: #1d4ed8; background: #dbeafe; font-weight: 700; }
+.feature-card { height: 100%; min-height: 260px; padding: 30px; border: 1px solid #e8eef6; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px rgba(15,23,42,.06); }
+.feature-card h2 { font-size: 1.35rem; margin-top: 14px; }
+.feature-card p { min-height: 48px; color: var(--muted); }
+.feature-icon { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 14px; background: #eff6ff; font-size: 24px; }
+.auth-shell { min-height: 520px; display: grid; place-items: center; }
+.auth-panel { width: min(100%, 520px); padding: 38px; border: 1px solid #e8eef6; border-radius: 20px; background: #fff; box-shadow: 0 18px 45px rgba(15,23,42,.09); }
+.auth-panel h1 { margin: 8px 0 8px; font-size: 2rem; }
+.auth-panel form { margin-top: 24px; }
+.form-control { min-height: 46px; border-color: #d9e2ed; }
+.form-control:focus { border-color: #93c5fd; box-shadow: 0 0 0 .25rem rgba(37,99,235,.12); }
+.auth-link { text-align: center; margin: 22px 0 0; color: var(--muted); }
+.table-card { margin-top: 22px; overflow: hidden; border: 1px solid #e7edf5; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px rgba(15,23,42,.05); }
+.table { --bs-table-bg: #fff; }
+.table thead th { padding: 18px 22px; border-bottom: 1px solid #e7edf5; color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .5px; }
+.table tbody td { padding: 18px 22px; border-color: #edf2f7; }
+.role-pill { display: inline-block; padding: 6px 10px; border-radius: 999px; color: #1d4ed8; background: #dbeafe; font-size: .82rem; font-weight: 700; }
+.empty-state { text-align: center; color: var(--muted); }
+.user-name { cursor: default; }
+
+@media (max-width: 768px) {
+  .topbar { min-height: 64px; }
+  .page-container { padding-top: 24px; }
+  .hero-card { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+  .hero-stat { display: none; }
+  .hero-copy h1 { font-size: 2.2rem; }
+  .dashboard-head, .list-head { align-items: flex-start; gap: 18px; }
+  .auth-panel { padding: 28px 20px; }
+}

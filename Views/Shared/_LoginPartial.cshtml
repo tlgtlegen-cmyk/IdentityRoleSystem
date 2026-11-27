@@ -1,0 +1,30 @@
+﻿@using IdentityRoleSystem.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    var currentUser = await UserManager.GetUserAsync(User);
+    var role = await UserManager.GetRolesAsync(currentUser!);
+    <li class="nav-item">
+        <span class="nav-link user-name">@currentUser?.FullName · @(role.FirstOrDefault() ?? "Пайдаланушы")</span>
+    </li>
+    <li class="nav-item">
+        <form asp-controller="Account" asp-action="Logout" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="nav-link btn btn-link">Шығу</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Account" asp-action="Register">Тіркелу</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Account" asp-action="Login">Кіру</a>
+    </li>
+}
+</ul>

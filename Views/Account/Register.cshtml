@@ -1,0 +1,45 @@
+@model IdentityRoleSystem.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Тіркелу";
+}
+<div class="auth-shell">
+    <section class="auth-panel">
+        <span class="eyebrow">ЖАҢА ТІРКЕЛГІ</span>
+        <h1>Тіркелу</h1>
+        <p class="text-secondary">Барлық өрістер міндетті және серверде тексеріледі.</p>
+        <form asp-action="Register" method="post" novalidate>
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" autocomplete="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" autocomplete="given-name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" autocomplete="family-name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Тіркелу және кіру</button>
+        </form>
+        <p class="auth-link">Тіркелгі бар ма? <a asp-action="Login">Кіру</a></p>
+    </section>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
